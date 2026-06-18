@@ -1,0 +1,35 @@
+name: 'Email Report'
+description: 'Email scan report'
+
+inputs:
+  report_path:
+    description: 'Path to the report scan report file to attach'
+    required: true
+  recipients:
+    description: 'Comma-separated recipients email addresses'
+    required: true
+  sender:
+    description: 'from address; must be allowed by relay'
+    required: true
+  subject:
+    description: 'Email subject'
+    required: true
+  body:
+    description: 'Email body'
+    required: false
+    default: 'Please find the attached scan report.'
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Send email with attachment
+      shell: bash
+      env:
+        REPORT_PATH: ${{ inputs.report_path }}
+        REPORT_RECIPIENTS: ${{ inputs.recipients }}
+        SENDER: ${{ inputs.sender }}
+        SUBJECT: ${{ inputs.subject }}
+        BODY: ${{ inputs.body }}
+      run: python3 ${{ github.action_path }}/email.py
+
