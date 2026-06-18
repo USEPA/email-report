@@ -9,5 +9,5 @@ body = os.environ.get('BODY', 'Please find the attached scan report.')
 
 cmd = ["mail", "-s", os.environ.get('SUBJECT'), "-r", os.environ['SENDER'], "-a", report, *recipients]
 
-subprocess.run(cmd, input=body, text=True, check=True)
+subprocess.run(cmd, input=body, universal_newlines=True, check=True)
 print(f"Email sent: {report}")
