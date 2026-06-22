@@ -31,7 +31,7 @@ on:
   workflow_dispatch:
     
 env:
-    REPORT_DIR: /data/watchtower/chemtrack/container-results/chemtrack-api
+    REPORT_DIR: /data/watchtower/*/container-results/filepath
 
 jobs:
     send-email:
@@ -40,13 +40,13 @@ jobs:
         - name: Email latest report
           uses: USEPA/email-report@main
           with:
-                report_path: ${{ env.REPORT_DIR }}/chemtrack-api-report.html
+                report_path: ${{ env.REPORT_DIR }}/filename.html
                 recipients: ${{ vars.REPORT_RECIPIENTS }}
                 sender: ${{ vars.REPORT_SENDER }}
-                subject: "ChemTrack API Scan Report"
+                subject: "Filename Scan Report"
                 body: |
                     Hello,
 
-                    Please find attached the ChemTrack API scan report.
+                    Please find attached the Filename scan report.
 
                     Best regards.
