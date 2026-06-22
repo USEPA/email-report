@@ -28,7 +28,6 @@ name: email
 on:
   schedule:
     - cron: '00 9 * * 1,4'
-  workflow_dispatch:
     
 env:
     REPORT_DIR: /data/watchtower/*/container-results/filepath
@@ -50,3 +49,4 @@ jobs:
                     Please find attached the Filename scan report.
 
                     Best regards.
+
